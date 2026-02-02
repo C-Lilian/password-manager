@@ -7,7 +7,9 @@ dependencies = [
   "sqlalchemy",
   "psycopg2-binary",
   "pydantic",
-  "passlib[bcrypt]",
+  "pydantic-settings",
+  "email-validator",
+  "bcrypt",
   "python-jose",
   "python-dotenv"
 ]

@@ -1,22 +1,14 @@
-from passlib.context import CryptContext
-
-# Configuration du moteur de hash
-# bcrypt est lent volontairement → protection contre brute force
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto"
-)
+import bcrypt
 
 def hash_password(password: str) -> str:
     """
     Prend un mot de passe en clair
     et retourne un hash sécurisé.
     """
-    return pwd_context.hash(password)
-
+    return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
 def verify_password(password: str, hashed_password: str) -> bool:
     """
     Vérifie qu'un mot de passe correspond à son hash.
     """
-    return pwd_context.verify(password, hashed_password)
+    return bcrypt.checkpw(password.encode("utf-8"), hashed_password.encode("utf-8"))

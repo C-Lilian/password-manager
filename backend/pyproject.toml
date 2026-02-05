@@ -11,7 +11,8 @@ dependencies = [
   "email-validator",
   "bcrypt",
   "python-jose",
-  "python-dotenv"
+  "python-dotenv",
+  "python-multipart"
 ]
 
 [tool.pytest.ini_options]

@@ -1,10 +1,15 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
+from datetime import timedelta
 
 from app.db.session import get_db
 from app.models.user import User
 from app.schemas.user import UserCreate, UserRead
 from app.core.security import hash_password, verify_password
+from app.core.jwt import create_access_token
+from app.core.config import settings
+from app.dependencies.auth import get_current_user
 
 router = APIRouter(
     prefix="/auth",
@@ -55,9 +60,12 @@ def register(user_data: UserCreate, db: Session = Depends(get_db)):
 
 
 @router.post("/login")
-def login(user_data: UserCreate, db: Session = Depends(get_db)):
+def login(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: Session = Depends(get_db)
+):
     """
-    Authentifie un utilisateur.
+    Authentifie un utilisateur via OAuth2 password flow.
 
     - vérifie que l'email existe
     - compare le mot de passe hashé
@@ -65,7 +73,7 @@ def login(user_data: UserCreate, db: Session = Depends(get_db)):
 
     user = (
         db.query(User)
-        .filter(User.email == user_data.email)
+        .filter(User.email == form_data.username)
         .first()
     )
 
@@ -76,10 +84,30 @@ def login(user_data: UserCreate, db: Session = Depends(get_db)):
         )
 
     # Vérification du mot de passe
-    if not verify_password(user_data.password, user.password_hash):
+    if not verify_password(form_data.password, user.password_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid credentials"
         )
 
-    return {"message": "Login successful"}
+    # Création du token JWT
+    access_token_expires = timedelta(
+        minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
+    )
+    access_token = create_access_token(
+        data={"sub": str(user.id)},
+        expires_delta=access_token_expires
+    )
+
+    return {
+        "access_token": access_token,
+        "token_type": "bearer"
+    }
+
+
+@router.get("/me", response_model=UserRead)
+def read_current_user(current_user=Depends(get_current_user)):
+    """
+    Retourne les informations de l'utilisateur connecté
+    """
+    return current_user

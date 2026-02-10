@@ -12,7 +12,8 @@ dependencies = [
   "bcrypt",
   "python-jose",
   "python-dotenv",
-  "python-multipart"
+  "python-multipart",
+  "cryptography"
 ]
 
 [tool.pytest.ini_options]

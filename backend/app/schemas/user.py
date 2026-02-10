@@ -22,4 +22,4 @@ class UserRead(BaseModel):
     created_at: datetime
 
     class Config:
-        orm_mode = True # Permet à Pydantic de lire les objets ORM (SQLAlchemy)
+        from_attributes = True # Permet à Pydantic de lire les objets ORM (SQLAlchemy)

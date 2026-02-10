@@ -24,6 +24,9 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str
     POSTGRES_PORT: int
 
+    # Clé de chiffrement pour les secrets (Fernet)
+    SECRET_ENCRYPTION_KEY: str
+
     class Config:
       # Indique à Pydantic de lire le fichier
       env_file = ".env"

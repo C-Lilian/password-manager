@@ -1,8 +1,10 @@
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
+
 
 from app.db.base import Base
 
@@ -38,7 +40,14 @@ class User(Base):
 
     # Date de création du compte
     created_at = Column(
-        DateTime,
-        default=datetime.utcnow,
+        DateTime(timezone=True),
+        default=datetime.now(timezone.utc),
         nullable=False
     )
+
+    secrets = relationship(
+        "Secret",
+        back_populates="user",
+        cascade="all, delete"
+    )
+

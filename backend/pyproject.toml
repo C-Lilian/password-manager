@@ -16,5 +16,14 @@ dependencies = [
   "cryptography"
 ]
 
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+  "pytest-asyncio",
+  "httpx"
+]
+
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]

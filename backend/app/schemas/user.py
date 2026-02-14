@@ -21,5 +21,5 @@ class UserRead(BaseModel):
     email: EmailStr
     created_at: datetime
 
-    class Config:
+    class ConfigDict:
         from_attributes = True # Permet à Pydantic de lire les objets ORM (SQLAlchemy)

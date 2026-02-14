@@ -12,6 +12,18 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
 
+  db_test:
+    image: postgres:16
+    container_name: password_manager_db_test
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: password_manager_test
+      POSTGRES_USER: pm_test_user
+      POSTGRES_PASSWORD: pm_test_password
+    ports:
+      - "5433:5432"
+
+
   backend:
     build: ./backend
     container_name: password_manager_backend

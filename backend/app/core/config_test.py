@@ -1,10 +1,10 @@
 from pydantic_settings import BaseSettings
 
 
-class Settings(BaseSettings):
+class TestSettings(BaseSettings):
     """
     Cette classe charge automatiquement les variables
-    d'environnement depuis le système ou un fichier .env.
+    d'environnement depuis le système ou un fichier .env.test.
     
     """
 
@@ -29,7 +29,7 @@ class Settings(BaseSettings):
 
     class ConfigDict:
       # Indique à Pydantic de lire le fichier
-      env_file = ".env"
+      env_file = ".env.test"
 
 # Instance globale utilisée partout dans le backend
-settings = Settings()
+test_settings = TestSettings()

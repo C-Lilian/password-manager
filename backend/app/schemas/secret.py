@@ -26,7 +26,7 @@ class SecretList(SecretBase):
     title: str
     created_at: datetime
     
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
@@ -36,5 +36,5 @@ class SecretRead(SecretBase):
     created_at: datetime
     updated_at: datetime
     
-    class Config:
+    class ConfigDict:
         from_attributes = True

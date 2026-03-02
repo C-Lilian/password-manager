@@ -17,7 +17,7 @@ export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
+  
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -51,7 +51,7 @@ export default function Dashboard() {
       </div>
     );
   }
-
+  
   if (error) {
     return (
       <div style={{ 
@@ -63,7 +63,7 @@ export default function Dashboard() {
       </div>
     );
   }
-
+  
   return (
     <div className="Dashboard">
       {/* Header avec infos utilisateur et logout */}
@@ -78,7 +78,7 @@ export default function Dashboard() {
         </div>
         
         <button onClick={handleLogout} className="DashboardHeaderDeconnect">
-          <span><ExitToAppIcon fontSize="small"/> D&eacute;connexion</span>
+          <ExitToAppIcon fontSize="small"/>&nbsp;<span>D&eacute;connexion</span>
         </button>
       </div>
       

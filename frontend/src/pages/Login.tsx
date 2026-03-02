@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
 import { useAuth } from "../auth/AuthContext";
+import "./styles/Login.scss";
+import PMLogoNobg from "../assets/pm_logo_nobg.png";
+import ErrorIcon from '@mui/icons-material/Error';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -36,38 +39,52 @@ export default function Login() {
   };
   
   return (
-    <div>
-      <h2>Login</h2>
-      
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <section className="Login">
+      <div className="LoginContent">
+        <div className="LoginContentHeader">
+          <div className="LoginContentHeaderLogo">
+            <img src={PMLogoNobg} alt="Logo Password Manager" width={150} loading="lazy"/>
+          </div>
+          <p className="LoginContentHeaderTitle">
+            Connexion <br />
+            <span className="LoginContentHeaderTitleInfo">* champs obligatoires</span>
+          </p>
         </div>
         
-        <div>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="LoginContentForm">
+          <div className="LoginContentFormField">
+            <span className="LoginContentFormFieldName">Email *</span>
+            <input
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="LoginContentFormFieldsInput"
+              required
+            />
+          </div>
+          
+          <div className="LoginContentFormField">
+            <span className="LoginContentFormFieldName">Mot de passe *</span>
+            <input
+              type="password"
+              placeholder="*****"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="LoginContentFormFieldsInput"
+              required
+            />
+          </div>
+          
+          <button type="submit" className="LoginContentFormButton">Se connecter</button>
+        </form>
         
-        <button type="submit">Login</button>
-      </form>
-      
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      
-      <p>
-        Pas encore de compte ? <Link to="/register">S&apos;enregistrer</Link>
-      </p>
-    </div>
+        {error && <p className="LoginContentError"><ErrorIcon fontSize="small" />&nbsp;{error}</p>}
+        
+        <p className="LoginContentLink">
+          Pas encore de compte ? <Link to="/register">S&apos;enregistrer</Link>
+        </p>
+      </div>
+    </section>
   );
 }

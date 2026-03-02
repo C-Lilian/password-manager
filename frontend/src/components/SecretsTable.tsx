@@ -124,7 +124,7 @@ export const SecretsTable: React.FC = () => {
       {/* Header avec titre et bouton de création */}
       <div className="SecretsHeader">
         <h3>Mes Secrets</h3>
-        <button onClick={() => setIsCreating(true)}>+ Nouveau Secret</button>
+        <button className="SecretsHeaderButton" onClick={() => setIsCreating(true)}>+ Nouveau Secret</button>
       </div>
       
       {/* Barre de recherche avec debounce et indicateur de chargement */}
@@ -153,8 +153,8 @@ export const SecretsTable: React.FC = () => {
         </p>
       ) : (
         <div className="SecretsTableContent" style={{ opacity: isFetching ? 0.6 : 1}}>
-          <table className="SecretsTableContentTable" border={1}>
-            <thead>
+          <table className="SecretsTableContentTable">
+            <thead className="SecretsTableContentTableThead">
               <tr className="SecretsTableContentTableTheadTr">
                 {/* Headers cliquables pour le tri */}
                 <th
@@ -197,24 +197,28 @@ export const SecretsTable: React.FC = () => {
                   <td className="SecretsTableContentTableTbodyTrTd">{secret.title}</td>
                   <td className="SecretsTableContentTableTbodyTrTd">{secret.username}</td>
                   <td className="SecretsTableContentTableTbodyTrTd">{secret.url || "-"}</td>
-                  <td className="SecretsTableContentTableTbodyTrTd">
+                  <td className="SecretsTableContentTableTbodyTrTd SecretsTableContentTableTbodyTrTdDate">
                     {new Date(secret.created_at).toLocaleDateString("fr-FR", {
                       day: "2-digit",
                       month: "2-digit",
                       year: "numeric",
                     })}
                   </td>
-                  <td className="SecretsTableContentTableTbodyTrTd">
-                    <button onClick={() => setSelectedSecretId(secret.id)}>
+                  <td className="SecretsTableContentTableTbodyTrTd SecretsTableContentTableTbodyTrTdActions">
+                    <button
+                      className="SecretsTableContentTableTbodyTrTdActionsBtn" 
+                      onClick={() => setSelectedSecretId(secret.id)}>
                       <RemoveRedEyeIcon fontSize="small" />&nbsp;Voir
                     </button>
                     <button
+                      className="SecretsTableContentTableTbodyTrTdActionsBtn"
                       onClick={() => setEditingSecretId(secret.id)}
                       style={{ marginLeft: "0.5rem" }}
                     >
                       <ModeEditIcon fontSize="small" />&nbsp;Modifier
                     </button>
                     <button
+                      className="SecretsTableContentTableTbodyTrTdActionsBtn"
                       onClick={() => handleDelete(secret.id)}
                       style={{ marginLeft: "0.5rem" }}
                     >
@@ -230,12 +234,12 @@ export const SecretsTable: React.FC = () => {
       
       {/* Pagination */}
       <div className="SecretsPagination">
-        <button onClick={() => setPage((p) => Math.max(p - 1, 0))} disabled={page === 0}>
-          ← Précédent
+        <button className="SecretsPaginationBtn" onClick={() => setPage((p) => Math.max(p - 1, 0))} disabled={page === 0}>
+          ←&nbsp;Précédent
         </button>
         <span>Page {page + 1}</span>
-        <button onClick={() => setPage((p) => p + 1)} disabled={secrets.length < limit}>
-          Suivant →
+        <button className="SecretsPaginationBtn" onClick={() => setPage((p) => p + 1)} disabled={secrets.length < limit}>
+          Suivant&nbsp;→
         </button>
       </div>
       

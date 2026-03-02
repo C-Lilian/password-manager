@@ -37,45 +37,49 @@ const SecretForm = ({ initialData = {}, onSubmit }: Props) => {
   return (
     <form onSubmit={handleSubmit} className="formSecret">
       <div className="formSecretDiv">
+        <span className="formSecretDivName">Titre *</span>
         <input
           name="title"
           value={form.title}
           onChange={handleChange}
           required
-          placeholder="Titre *"
+          placeholder="Site C-Lilian"
           className="formSecretDivInput"
         />
       </div>
 
       <div className="formSecretDiv">
+        <span className="formSecretDivName">Nom d&apos;utilisateur *</span>
         <input
           name="username"
           value={form.username}
           onChange={handleChange}
           required
-          placeholder="Username *"
+          placeholder="john.doe@example.com"
           className="formSecretDivInput"
         />
       </div>
 
       <div className="formSecretDiv">
+        <span className="formSecretDivName">Mot de passe *</span>
         <input
           name="password"
           type="password"
           value={form.password}
           onChange={handleChange}
           required
-          placeholder="Password *"
+          placeholder="*****"
           className="formSecretDivInput"
         />
       </div>
 
       <div className="formSecretDiv">
+        <span className="formSecretDivName">URL</span>
         <input
           name="url"
           value={form.url}
           onChange={handleChange}
-          placeholder="URL (optionnel)"
+          placeholder="https://lilian-cleret.com"
           className="formSecretDivInput"
         />
       </div>

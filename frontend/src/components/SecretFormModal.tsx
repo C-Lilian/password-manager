@@ -66,7 +66,10 @@ const SecretFormModal: React.FC<Props> = ({ secretId, onClose }) => {
       <div onClick={onClose} className="ModalBackground" />
       
       <div className="ModalContent" >
-        <h3 className="ModalContentTitle">{isEditing ? "Modifier le secret" : "Nouveau secret"}</h3>
+        <p className="ModalContentTitle">
+          {isEditing ? "Modifier le secret" : "Nouveau secret"} <br />
+          <span className="ModalContentTitleInfo">* champs obligatoires</span>
+        </p>
         
         <SecretForm
           initialData={secret}

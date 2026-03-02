@@ -26,27 +26,29 @@ const SecretModal: React.FC<Props> = ({ secret, onClose }) => {
       <div onClick={onClose} className="ModalBackground" />
       
       <div className="ModalContent">
-        <h3>Détails du secret</h3>
+        <p className="ModalContentTitle">Détails du secret</p>
         
         <div className="ModalContentChamp">
-          <strong>Titre:</strong>&nbsp;{secret.title}
+          <span className="ModalContentChampName">Titre :</span>&nbsp;
+          <span className="ModalContentChampField">{secret.title}</span>
         </div>
         
         <div className="ModalContentChamp">
-          <strong>Utilisateur:</strong>&nbsp;{secret.username}
+          <span className="ModalContentChampName">Utilisateur :</span>&nbsp;
+          <span className="ModalContentChampField">{secret.username}</span>
         </div>
         
         <div className="ModalContentChamp">
-          <strong>Mot de passe:</strong>&nbsp;
+          <span className="ModalContentChampName">Mot de passe :</span>&nbsp;
           <input
             type={showPassword ? "text" : "password"}
             value={secret.password}
             readOnly
-            className="ModalContentChampMdp"
-          />
+            className="ModalContentChampInput"
+          />&nbsp;
           <button onClick={() => setShowPassword(!showPassword)} className="ModalContentChampButton">
             {showPassword ? <VisibilityOffIcon fontSize="small"/> : <VisibilityIcon fontSize="small"/>}
-          </button>
+          </button>&nbsp;
           <button onClick={copyPassword} className="ModalContentChampButton">
             {copied ? <CheckBoxIcon fontSize="small" color="success"/> : <ContentCopyIcon fontSize="small"/>}
           </button>
@@ -54,16 +56,15 @@ const SecretModal: React.FC<Props> = ({ secret, onClose }) => {
         
         {secret.url && (
           <div className="ModalContentChamp">
-            <strong>URL:</strong>&nbsp;
-            <a href={secret.url} target="_blank" rel="noopener noreferrer">
+            <span className="ModalContentChampName">URL :</span>&nbsp;
+            <a className="ModalContentChampUrl" href={secret.url} target="_blank" rel="noopener noreferrer">
               {secret.url}
             </a>
           </div>
         )}
         
-        <div className="ModalContentButton">
-          <button onClick={onClose}>Fermer</button>
-        </div>
+        <button className="ModalContentButton" onClick={onClose}>Fermer</button>
+        
       </div>
     </>
   );

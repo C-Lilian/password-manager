@@ -20,46 +20,62 @@ The application allows users to securely store, encrypt and manage their credent
 
 ## 🧰 Tech Stack
 
-### 🖥 Backend
+| 🖥 Backend | 🎨 Frontend | 🧪 Testing | 🐳 Infrastructure |
+|----------|----------|----------|----------------|
+| FastAPI | React 19 | Pytest | Docker |
+| Python 3.11 | TypeScript | pytest-asyncio | Docker Compose |
+| PostgreSQL | Vite | httpx | PostgreSQL |
+| SQLAlchemy | React Router v7 |  | Git & GitHub |
+| Pydantic | React Query v5 |  | ESLint |
+| python-jose (JWT) | Axios |  |  |
+| bcrypt | Material UI v7 |  |  |
+| cryptography (AES) | MUI Icons |  |  |
+| Uvicorn | Emotion (MUI styling) |  |  |
+| python-dotenv |  |  |  |
+| email-validator |  |  |  |
+| python-multipart |  |  |  |
 
-* **FastAPI**
-* **Python 3.11**
-* **PostgreSQL**
-* **SQLAlchemy**
-* **Pydantic & Pydantic Settings**
-* **JWT Authentication** (`python-jose`)
-* **Password hashing** (`bcrypt`)
-* **AES Encryption** (`cryptography`)
-* **Uvicorn**
-* **python-dotenv**
-* **email-validator**
-* **python-multipart**
+---
 
-### 🎨 Frontend
+## 📸 Application Preview
 
-* **React 19**
-* **TypeScript**
-* **Vite**
-* **React Router v7**
-* **React Query v5**
-* **Axios**
-* **Material UI v7**
-* **Material UI Icons**
-* **Emotion (MUI styling)**
+### 🔐 Authentication
 
-### 🧪 Testing
+<p align="center">
+  <img src="assets/screenshots/pm_login.png" width="900"/>
+</p>
 
-* **Pytest**
-* **pytest-asyncio**
-* **httpx**
+---
 
-### 🐳 Infrastructure
+### 📊 Secrets Dashboard
 
-* **Docker**
-* **Docker Compose**
-* **PostgreSQL**
-* **Git & GitHub**
-* **ESLint**
+<p align="center">
+  <img src="assets/screenshots/pm_dashboard.png" width="900"/>
+</p>
+
+---
+
+### ➕ Create New Secret
+
+<p align="center">
+  <img src="assets/screenshots/pm_formNewEdit.png" width="900"/>
+</p>
+
+---
+
+### 👁 View Secret
+
+<p align="center">
+  <img src="assets/screenshots/pm_detail.png" width="900"/>
+</p>
+
+---
+
+### 📚 API Documentation (Swagger UI)
+
+<p align="center">
+  <img src="assets/screenshots/pm_apiDocs.png" width="900"/>
+</p>
 
 ---
 
@@ -165,6 +181,45 @@ Backend tests are executed using:
 ```bash
 pytest
 ```
+
+---
+
+
+## 📈 Roadmap & Future Improvements
+
+The project has been designed with extensibility in mind.  
+Several improvements and advanced features could be implemented:
+
+### 🔐 Security Enhancements
+- Two-Factor Authentication (2FA)
+- Rate limiting & brute-force protection
+- Secret rotation mechanism
+
+### 🧠 User Experience & Product Features
+- Dark mode
+- Password strength indicator
+- Built-in password generator
+- Responsive mobile optimization
+- Multiple secrets deletion
+- Save & add another secret workflow
+- Profile customization (username, preferences, security settings)
+- Table personalization (visible columns, density, layout preferences)
+- View mode toggle (table / card layout)
+- Global sorting across all results (not only paginated items)
+
+### 🌐 Platform Extensions
+- Browser extension integration
+- Desktop application
+- Mobile application (React Native / Flutter)
+
+### 🏗 Architecture & Scalability
+- Multi-device session management
+- API rate limiting middleware
+
+### 🧪 Testing & Quality
+- Frontend unit tests (React Testing Library)
+- End-to-end testing (Playwright / Cypress)
+- CI pipeline with GitHub Actions
 
 ---
 
